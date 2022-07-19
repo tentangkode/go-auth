@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Go Session Auth</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        .container {
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container mt-5">
+        <form action="/register" method="post">
+
+            <h4>SIGN UP</h4>
+            <p>Silahkan isi formulir dibawah untuk mendaftar</p>
+            <hr/>
+
+            {{ if .pesan }}
+                <div class="alert alert-success">
+                    {{ .pesan }}
+                </div>
+                <hr/>
+            {{ end }}
+
+            <div class="form-group">
+                <label for="">Nama Lengkap</label>
+                <input type="text" name="nama_lengkap" value="{{ .user.NamaLengkap }}" class="form-control {{ if .validation.NamaLengkap }} is-invalid {{ end }}">
+                <div class="invalid-feedback">
+                    {{ .validation.NamaLengkap }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">E-Email</label>
+                <input type="text" name="email" value="{{ .user.Email }}" class="form-control {{ if .validation.Email }} is-invalid {{ end }}">
+                <div class="invalid-feedback">
+                    {{ .validation.Email }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Username</label>
+                <input type="text" name="username" value="{{ .user.Username }}" class="form-control {{ if .validation.Username }} is-invalid {{ end }}">
+                <div class="invalid-feedback">
+                    {{ .validation.Username }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Password</label>
+                <input type="password" name="password" value="{{ .user.Password }}" class="form-control {{ if .validation.Password }} is-invalid {{ end }}">
+                <div class="invalid-feedback">
+                    {{ .validation.Password }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Konfirmasi Password</label>
+                <input type="password" name="cpassword" value="{{ .user.Cpassword }}" class="form-control {{ if .validation.Cpassword }} is-invalid {{ end }}">
+                <div class="invalid-feedback">
+                    {{ .validation.Cpassword }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block">SIGN UP</button>
+            <hr/>
+            <center>
+                <p>Sudah punya akun? <a href="/login">Login</a></p>
+            </center>
+        </form>
+    </div>
+
+</body>
+</html>
